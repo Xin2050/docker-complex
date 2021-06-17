@@ -3,10 +3,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t leearnold/docker-complex -f ./client/Dockerfile.dev ./client
+  - docker build -t docker-complex -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true leearnold/docker-complex yarn run test -- --coverage
+  - docker run -e CI=true docker-complex yarn run test -- --coverage
 
 language: generic
 
