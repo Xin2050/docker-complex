@@ -1,11 +1,15 @@
 version: '3'
 services:
-  postgres:
-    image: 'postgres:latest'
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     environment:
-      POSTGRES_PASSWORD: postgres_password
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
     ports:
-      - "5432:5432"
+      - "33006:3306"
   redis:
     image: 'redis:latest'
     ports:
@@ -29,11 +33,11 @@ services:
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - PGUSER=postgres
-      - PGHOST=postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
+      - MYSQLUSER=test
+      - MYSQLHOST=db
+      - MYSQLDATABASE=test
+      - MYSQLPASSWORD=test
+      - MYSQLPORT=3306
     ports:
       - "5000:5000"
   client:
